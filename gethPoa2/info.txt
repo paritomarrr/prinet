@@ -1,0 +1,20 @@
+Step1 - create directory -> NODE
+
+Step2 - will create 2 accounts in geth
+cmd
+geth --datadir ./node/ account new
+ACCOUNT 1 -> 0x2953312db357a9b1AE3172CE0dD08Ea2F1EBa7fb
+ACCOUNT 2 -> 0x64849ee25eFeECf0b9Ef1d4e8eF2728Cb1A15054
+
+step3 - create a genesis file ( genesis file defines the initial state of your blockchain )
+cmd
+puppeth
+
+step4 - initialize the genesis file
+geth --datadir node/i nit node/node.json
+
+step 5 - start geth blockchain 
+geth --networkid 1234 --datadir node/ --port 30303 --ipcdisable --syncmode full --http --http.corsdomain https://remix.ethereum.org --http.addr 0.0.0.0 --http.api admin,eth,miner,net,txpool,personal,web3 --allow-insecure-unlock --http.vhosts=* --http.port 8545 -unlock 0x2953312db357a9b1AE3172CE0dD08Ea2F1EBa7fb,0x64849ee25eFeECf0b9Ef1d4e8eF2728Cb1A15054 --password node/password.txt --mine console 
+
+step 6 - javascript console
+eth.accounts → this will show you the lists of accounts(2) available
