@@ -1,0 +1,23 @@
+cmd -> geth --datadir "./data" account new
+
+node1 -> 0xC321D7B3516d67b1aFd888339245dB03F99C74AB
+
+node2 -> 0x35E9815Dd7BE8DA224b5f867b5456E9dD0D544e6
+
+bootnode -> used to connect all the nodes with each other
+- generate a key ->bootnode -genkey boot.key
+-> bootnode -nodekey boot.key 
+this will return an enode
+
+enode -> enode://d29cf777b2ecff13315fd2d6ff84c2efbd6cac2af38460de09ad77c6080cf6545e0a0e5a71dd72a55d0474b7f60ac9bfc3de5603482518a2b2090e2c44fdc655@127.0.0.1:0?discport=30301
+
+this will allow other peers to connect with the network
+
+start all the nodes starting with bootnode
+cmd-> bootnode -nodekey "./boot.key" -verbosity 7 -addr "127.0.0.1:30301"
+
+geth --networkid 14333 --datadir "./data" --bootnodes enode://d29cf777b2ecff13315fd2d6ff84c2efbd6cac2af38460de09ad77c6080cf6545e0a0e5a71dd72a55d0474b7f60ac9bfc3de5603482518a2b2090e2c44fdc655@127.0.0.1:0?discport=30301 --port 30303 --ipcdisable --syncmode full --rpc --allow-insecure-unlock --rpccorsdomain "*" --rpcport 8545 --unlock 0xC321D7B3516d67b1aFd888339245dB03F99C74AB --password password.txt --mine console
+
+geth --datadir ./data --nodiscover --syncmode full -verbosity 3 --ipcdisable --port 30303 --bootnodes enode://d29cf777b2ecff13315fd2d6ff84c2efbd6cac2af38460de09ad77c6080cf6545e0a0e5a71dd72a55d0474b7f60ac9bfc3de5603482518a2b2090e2c44fdc655@127.0.0.1:0?discport=30301 --networkid 14333 -unlock 0xC321D7B3516d67b1aFd888339245dB03F99C74AB --password password.txt --mine console
+
+geth --datadir ./data --nodiscover --syncmode full -verbosity 3 --ipcdisable --port 30303 --bootnodes enode://d29cf777b2ecff13315fd2d6ff84c2efbd6cac2af38460de09ad77c6080cf6545e0a0e5a71dd72a55d0474b7f60ac9bfc3de5603482518a2b2090e2c44fdc655@127.0.0.1:0?discport=30301 --networkid 14333 --rpc --allow-insecure-unlock --rpccorsdomain "*" --rpcport 8545 --unlock 0xC321D7B3516d67b1aFd888339245dB03F99C74AB --password password.txt --mine console
