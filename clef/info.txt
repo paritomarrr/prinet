@@ -1,0 +1,16 @@
+STEP 1
+create account through clef 
+clef -> account management took
+cmd -> clef newaccount --keystore geth-tutorial/keystore
+
+save account address and password
+acc -> 0x47bb121DFA0EB79A1266AE5f204F197eEF8CD0BC
+pass -> paritomar123
+
+STEP 2
+start clef
+cmd -> clef --keystore geth-tutorial/keystore --configdir geth-tutorial/clef --chainid 5
+
+STEP 3
+Start geth
+cmd -> geth --datadir geth-tutorial --signer=geth-tutorial/clef/clef-ipc --ropsten --syncmode light --http
